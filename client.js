@@ -1,15 +1,17 @@
-var socket = io.connect('http://venz.io');
+function findServerTimeOffset() {
+  var socket = io.connect('http://venz.io');
 
-var num_requests = 10;
-var mean;
+  var num_requests = 10;
+  var mean;
 
-socket.on('pong', function(data)) {
-  if (!data.hasOwnProperty('d')) {
-    throw 'socket.io-time-sync: client received message with missing data';
+  socket.on('pong', function(data)) {
+    if (!data.hasOwnProperty('d')) {
+      throw 'socket.io-time-sync: client received message with missing data';
+    }
+    mean += data.d / num_requests;
+    console.log('difference: ' + data.d);
+    console.log('mean: ' + mean);
   }
-  mean += data.d / num_requests;
-  console.log('difference: ' + data.d);
-  console.log('mean: ' + mean);
-}
 
-socket.emit('ping', {t: (new Date())});
+  socket.emit('ping', {t: (new Date())});
+}
