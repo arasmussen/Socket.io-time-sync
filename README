@@ -1,15 +1,5 @@
-It's very common that in real-time games and applications, you need to know
-which of two events took place first. While the server's time should be
-authoritative since nothing can be trusted from clients, sometimes this
-calculation must be done on the client.
+It's very common that in real-time games and applications, you need to know which of two events took place first. While the server's time should be authoritative since nothing can be trusted from clients, sometimes this calculation must be done on the client.
 
-Rather than synchronizing the time between the client and the server, which is
-usually the first thing to come to mind, the best approach is to find difference
-between the server's time and the client's time, and add that difference to all
-timestamps coming from the server to convert those events' server time to local
-time.
+Rather than synchronizing the time between the client and the server, which is usually the first thing to come to mind, the best approach is to find difference between the server's time and the client's time, and add that difference to all timestamps coming from the server to convert those events' server time to local time.
 
-This repo makes it easy for the client to learn the relative difference between
-its own time and the server's time by sending a message to the server containing
-the time the message was sent and the server sending back the difference. This
-process is done so many times to ensure accuracy.
+This repo makes it easy for the client to learn the relative difference between its own time and the server's time by sending a message to the server containing the time the message was sent and the server sending back the difference. This process is done so many times to ensure accuracy.
